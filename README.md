@@ -22,6 +22,17 @@ Built against the [Anthropic Agent Skills](https://agentskills.io) open standard
 
 </div>
 
+## 👋 About SHR
+
+Hi, I'm **SHR**（`lyanshi795`）— a solo builder who distills real-world workflows into Agent Skills.  
+Everything in this repo is built, tested, and iterated by me; no third-party reposts.
+
+<p align="center">
+  <img src="./assets/wechat-qr.jpg" alt="SHR WeChat QR Code" width="260">
+  <br>
+  <sub>WeChat 名：<b>SLEO</b> · 北區，中國香港 · 掃描 QR Code 加我微信</sub>
+</p>
+
 ---
 
 ## 📖 What are Agent Skills?
@@ -57,6 +68,7 @@ In short: these are **workflow + experience-distillation** skills (the Anthropic
 
 ## 📑 Table of Contents
 
+- [About SHR](#-about-shr)
 - [What are Agent Skills?](#-what-are-agent-skills)
 - [Why this collection](#-why-this-collection)
 - [Skill catalog](#-skill-catalog)
