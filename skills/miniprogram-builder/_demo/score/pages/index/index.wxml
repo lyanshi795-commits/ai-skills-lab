@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="title">{{title}}</view>
+  <view class="subtitle">点击 + / - 记分，天然裂变：一人用，同桌都用</view>
+  <view class="row" wx:for="{{players}}" wx:key="name">
+    <text>{{item.name}}</text>
+    <view>
+      <text class="btn btn-ghost" data-i="{{index}}" data-d="-1" bindtap="change" style="display:inline-block;padding:10rpx 24rpx;margin-right:12rpx;">-</text>
+      <text style="font-size:36rpx;margin:0 16rpx;">{{item.score}}</text>
+      <text class="btn btn-ghost" data-i="{{index}}" data-d="1" bindtap="change" style="display:inline-block;padding:10rpx 24rpx;">+</text>
+    </view>
+  </view>
+  <view class="btn" bindtap="addPlayer">+ 添加玩家</view>
+</view>

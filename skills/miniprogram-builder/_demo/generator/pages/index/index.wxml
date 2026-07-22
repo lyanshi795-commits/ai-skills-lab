@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="title">{{title}}</view>
+  <textarea class="input" placeholder="输入内容，点击生成" value="{{input}}" bindinput="onInput" style="height:200rpx;"/>
+  <view class="btn" bindtap="generate">生成</view>
+  <view class="result" wx:if="{{output}}">{{output}}</view>
+</view>

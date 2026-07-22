@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="title">{{title}}</view>
+  <view class="subtitle">输入数值，点击计算</view>
+  <input class="input" placeholder="请输入数值 A" type="digit" value="{{a}}" bindinput="onInputA"/>
+  <input class="input" placeholder="请输入数值 B" type="digit" value="{{b}}" bindinput="onInputB"/>
+  <view class="btn" bindtap="compute">计算</view>
+  <view class="result" wx:if="{{result}}">结果：{{result}}</view>
+</view>

@@ -1,0 +1,52 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ===== Node =====
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# ===== 虚拟环境 / 依赖锁定（技能本身不带依赖，只留说明） =====
+.venv/
+.env
+.env.*
+
+# ===== 操作系统 / 编辑器 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# ===== 日志 / 临时 =====
+*.log
+*.tmp
+tmp/
+.cache/
+
+# ===== 密钥 / 凭据（防止误提交） =====
+*.pem
+*.key
+id_*
+*.p12
+*.pfx
+secrets.json
+
+# ===== 已生成产物（运行时输出，不入仓） =====
+output/
+generated/
+_demo_generated/

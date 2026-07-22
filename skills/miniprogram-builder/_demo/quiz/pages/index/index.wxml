@@ -1,0 +1,9 @@
+<view class="container">
+  <view class="title">{{title}}</view>
+  <block wx:if="{{!result}}">
+    <view class="subtitle">{{questions[step].q}}</view>
+    <view class="btn" data-d="0" bindtap="choose">{{questions[step].options[0]}}</view>
+    <view class="btn" data-d="1" bindtap="choose">{{questions[step].options[1]}}</view>
+  </block>
+  <view class="result" wx:else>{{result}}</view>
+</view>

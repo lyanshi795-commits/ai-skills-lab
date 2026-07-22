@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="title">{{title}}</view>
+  <view class="subtitle">单一功能 · 清晰场景（手册铁律）</view>
+  <view class="btn" bindtap="run">开始</view>
+  <view class="result" wx:if="{{result}}">{{result}}</view>
+</view>
