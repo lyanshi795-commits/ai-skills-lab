@@ -8,13 +8,13 @@ Built against the [Anthropic Agent Skills](https://agentskills.io) open standard
 
 <br>
 
-[![GitHub stars](https://img.shields.io/github/stars/lyanshi795-commits/workbuddy-skills?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/workbuddy-skills/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/lyanshi795-commits/workbuddy-skills?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/workbuddy-skills/network/members)
-[![GitHub license](https://img.shields.io/github/license/lyanshi795-commits/workbuddy-skills?style=flat-square)](./LICENSE)
-[![GitHub last commit](https://img.shields.io/github/last-commit/lyanshi795-commits/workbuddy-skills?style=flat-square)](https://github.com/lyanshi795-commits/workbuddy-skills/commits/main)
+[![GitHub stars](https://img.shields.io/github/stars/lyanshi795-commits/ai-skills-lab?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/ai-skills-lab/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/lyanshi795-commits/ai-skills-lab?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/ai-skills-lab/network/members)
+[![GitHub license](https://img.shields.io/github/license/lyanshi795-commits/ai-skills-lab?style=flat-square)](./LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/lyanshi795-commits/ai-skills-lab?style=flat-square)](https://github.com/lyanshi795-commits/ai-skills-lab/commits/main)
 [![Skills count](https://img.shields.io/badge/skills-6-blue?style=flat-square)](./skills)
 [![Spec](https://img.shields.io/badge/spec-agentskills.io-green?style=flat-square)](https://agentskills.io/specification)
-[![Repo size](https://img.shields.io/github/repo-size/lyanshi795-commits/workbuddy-skills?style=flat-square)](https://github.com/lyanshi795-commits/workbuddy-skills)
+[![Repo size](https://img.shields.io/github/repo-size/lyanshi795-commits/ai-skills-lab?style=flat-square)](https://github.com/lyanshi795-commits/ai-skills-lab)
 
 </div>
 
@@ -150,17 +150,17 @@ These skills follow the `agentskills.io` open standard, so they load in any comp
 ### Option A — Clone the whole repo (recommended)
 
 ```bash
-git clone https://github.com/lyanshi795-commits/workbuddy-skills.git
+git clone https://github.com/lyanshi795-commits/ai-skills-lab.git
 ```
 
 Then copy the skills you need:
 
 ```bash
 # user-wide (all projects)
-cp -r workbuddy-skills/skills/<skill-name> ~/.workbuddy/skills/<skill-name>
+cp -r ai-skills-lab/skills/<skill-name> ~/.workbuddy/skills/<skill-name>
 
 # or project-scoped
-cp -r workbuddy-skills/skills/<skill-name> <your-project>/.workbuddy/skills/<skill-name>
+cp -r ai-skills-lab/skills/<skill-name> <your-project>/.workbuddy/skills/<skill-name>
 ```
 
 ### Option B — Download a single skill
@@ -174,7 +174,7 @@ From the GitHub file browser, open `skills/<skill-name>/`, download the folder, 
 ## 📂 Repository structure
 
 ```
-workbuddy-skills/
+ai-skills-lab/
 ├── README.md
 ├── LICENSE
 ├── .gitignore
