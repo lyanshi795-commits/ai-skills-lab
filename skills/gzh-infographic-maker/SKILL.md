@@ -1,5 +1,11 @@
 ---
 name: gzh-infographic-maker
+license: MIT
+compatibility: 适用于 WorkBuddy / Claude Code / 任意 agentskills.io 兼容运行时
+metadata:
+  author: SHR
+  collection: SHR Skills
+  version: 1.0.0
 agent_created: true
 description: Generate high-end 1080px-wide PNG comparison infographics for WeChat public account (公众号) articles. Use this skill when the user asks for 公众号配图, 对比图, 双栏对比, or infographic images with two columns and a bottom caption bar. The skill produces low-saturation, premium-looking images using Python + Pillow + Microsoft YaHei fonts, without relying on font glyphs for check/cross markers.
 ---

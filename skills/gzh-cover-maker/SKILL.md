@@ -1,6 +1,12 @@
 ---
 name: gzh-cover-maker
 description: Generate hook-driven WeChat public account cover images (PNG) from article themes. Use when the user asks for 公众号封面, 封面图, 公众号首图, 文章封面, or requests a cover image for a WeChat article. Produces a 1080x1080 square feed thumbnail and a 1080x460 wide article-top/share-card cover using Python + Pillow with Microsoft YaHei fonts and a premium dark brand palette.
+license: MIT
+compatibility: 适用于 WorkBuddy / Claude Code / 任意 agentskills.io 兼容运行时
+metadata:
+  author: SHR
+  collection: SHR Skills
+  version: 1.0.0
 agent_created: true
 ---
 

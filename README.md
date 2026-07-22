@@ -1,8 +1,11 @@
 <div align="center">
 
-# 🧩 WorkBuddy Skills
+# 🧩 SHR Skills
 
-**A curated collection of production-grade Agent Skills — workflow + distilled experience, not just code generators.**
+**A personal collection of production-grade Agent Skills — workflow + distilled experience, not just code generators.**
+
+> 🧑‍💻 **Owner：SHR（lyanshi795）** — 这是我的名字缩写。仓库里所有技能均为我个人创建并维护。
+> 以后新增的 skills 都上传到这里，统一归入 **SHR Skills** 合集，并在每个 `SKILL.md` 标注 `author: SHR` + `collection: SHR Skills`。
 
 Built against the [Anthropic Agent Skills](https://agentskills.io) open standard · MIT licensed · cross-runtime compatible
 
@@ -10,6 +13,7 @@ Built against the [Anthropic Agent Skills](https://agentskills.io) open standard
 
 [![GitHub stars](https://img.shields.io/github/stars/lyanshi795-commits/ai-skills-lab?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/ai-skills-lab/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/lyanshi795-commits/ai-skills-lab?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/ai-skills-lab/network/members)
+[![Owner](https://img.shields.io/badge/owner-SHR-blue?style=flat-square)](https://github.com/lyanshi795-commits)
 [![GitHub license](https://img.shields.io/github/license/lyanshi795-commits/ai-skills-lab?style=flat-square)](./LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/lyanshi795-commits/ai-skills-lab?style=flat-square)](https://github.com/lyanshi795-commits/ai-skills-lab/commits/main)
 [![Skills count](https://img.shields.io/badge/skills-6-blue?style=flat-square)](./skills)

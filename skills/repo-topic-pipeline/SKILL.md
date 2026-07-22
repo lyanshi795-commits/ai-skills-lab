@@ -1,6 +1,12 @@
 ---
 name: repo-topic-pipeline
 description: Turn any GitHub repo (or local folder of docs/code) into a structured, searchable content material library and an automated WeChat/official-account topic-selection pipeline. Use when the user wants to build a 素材库 from a repository, mine candidate article topics from multiple angles, score them on multiple dimensions with a local tool, and output a ranked topic decision table. Triggered by phrases like: 把仓库变成选题库, 公众号素材库, 选题打分, 选题决策表, 从GitHub挖选题, 素材采集+选题挖掘.
+license: MIT
+compatibility: 适用于 WorkBuddy / Claude Code / 任意 agentskills.io 兼容运行时
+metadata:
+  author: SHR
+  collection: SHR Skills
+  version: 1.0.0
 agent_created: true
 ---
 

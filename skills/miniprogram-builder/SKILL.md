@@ -8,7 +8,8 @@ license: MIT
 compatibility: 面向微信小程序（中国大陆）；生成骨架用 Python 脚本，预览需用户本地微信开发者工具(Stable)；无外部网络依赖。
 allowed-tools: "Bash(python:*) Read Write Edit AskUserQuestion"
 metadata:
-  author: user
+  author: SHR
+  collection: SHR Skills
   mode: production
   version: 1.0.0
   model: "零到一工作流 + 经验决策卡（来自 AI 小程序实战手册）"

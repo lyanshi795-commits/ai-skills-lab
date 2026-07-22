@@ -8,7 +8,8 @@ license: MIT
 compatibility: 适用于 WorkBuddy / Claude Code / 任意 agentskills.io 兼容运行时；生成内容遵循开放标准，可跨平台。
 allowed-tools: "Bash(python:*) Read Write Edit AskUserQuestion WebFetch Glob Grep"
 metadata:
-  author: user
+  author: SHR
+  collection: SHR Skills
   version: 1.0.0
   category: meta-skill
   tags: [skill-authoring, agent-skills, benchmark]

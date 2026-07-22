@@ -1,6 +1,12 @@
 ---
 name: long-screenshot-ocr
 description: Extract Chinese/English text from very long screenshot images (e.g., mobile scroll captures, course handbooks, chat logs) using slicing, upscaling, reading-order reconstruction and noise cleanup. Use this skill when the user asks to OCR or extract text from one or more PNG/JPG screenshots.
+license: MIT
+compatibility: 适用于 WorkBuddy / Claude Code / 任意 agentskills.io 兼容运行时
+metadata:
+  author: SHR
+  collection: SHR Skills
+  version: 1.0.0
 agent_created: true
 ---
 
