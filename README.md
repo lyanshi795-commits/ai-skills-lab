@@ -1,74 +1,177 @@
 <div align="center">
 
-# 🧩 WorkBuddy Skills 合集
+# 🧩 WorkBuddy Skills
 
-**一套「工作流 + 经验沉淀」型的 Agent Skills 库**
+**A curated collection of production-grade Agent Skills — workflow + distilled experience, not just code generators.**
 
-遵循 Anthropic / OpenAI 风格 Agent Skills 规范，配合 WorkBuddy 使用
+Built against the [Anthropic Agent Skills](https://agentskills.io) open standard · MIT licensed · cross-runtime compatible
 
 <br>
 
 [![GitHub stars](https://img.shields.io/github/stars/lyanshi795-commits/workbuddy-skills?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/workbuddy-skills/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/lyanshi795-commits/workbuddy-skills?style=flat-square&logo=github)](https://github.com/lyanshi795-commits/workbuddy-skills/network/members)
 [![GitHub license](https://img.shields.io/github/license/lyanshi795-commits/workbuddy-skills?style=flat-square)](./LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/lyanshi795-commits/workbuddy-skills?style=flat-square)](https://github.com/lyanshi795-commits/workbuddy-skills/commits/main)
 [![Skills count](https://img.shields.io/badge/skills-6-blue?style=flat-square)](./skills)
+[![Spec](https://img.shields.io/badge/spec-agentskills.io-green?style=flat-square)](https://agentskills.io/specification)
 [![Repo size](https://img.shields.io/github/repo-size/lyanshi795-commits/workbuddy-skills?style=flat-square)](https://github.com/lyanshi795-commits/workbuddy-skills)
 
 </div>
 
 ---
 
-## 📖 这是什么
+## 📖 What are Agent Skills?
 
-本仓库是本人用 **WorkBuddy** 沉淀的一套 Agent Skills（技能）。每个技能都是一个独立文件夹，内含：
+> **Agent Skills** are a lightweight, open format for extending AI agents with specialized knowledge and workflows. At its core, a skill is a **folder containing a `SKILL.md` file** — metadata (`name`, `description`) plus instructions that tell an agent *how* to perform a task. Skills may also bundle `scripts/`, `references/`, and `assets/`.
 
-| 文件 | 作用 |
-|------|------|
-| `SKILL.md` | 指令正文（核心工作流 + 经验） |
-| `scripts/` | 可选的确定性工具（脚本） |
-| `references/` | 按需加载的参考资料（长文下沉） |
+This collection follows the [Anthropic Agent Skills specification](https://agentskills.io/specification): each skill is **self-contained, version-controlled, and loaded on demand** through *progressive disclosure*.
 
-> 💡 **设计原则**遵循官方《The Complete Guide to Building Skills for Claude》：三级渐进式披露（frontmatter 元数据 → SKILL.md 正文 → references/scripts 按需加载），正文只留核心，长资料下沉。
+```mermaid
+flowchart LR
+    A[Discovery<br/>Agent 启动时仅加载<br/>name + description] --> B[Activation<br/>任务匹配 description →<br/>读取完整 SKILL.md]
+    B --> C[Execution<br/>按指令执行 ·<br/>按需调用 scripts / references]
+```
 
----
-
-## 📑 目录
-
-- [⚡ 快速安装](#-快速安装)
-- [📂 目录结构](#-目录结构)
-- [🗂️ 技能清单](#️-技能清单)
-- [🛠️ 设计方法论](#️-设计方法论)
-- [📄 许可证 & 贡献](#-许可证--贡献)
+Because full instructions load **only when a task calls for them**, an agent can keep many skills on hand with a tiny context footprint — exactly the design the spec intends.
 
 ---
 
-## ⚡ 快速安装
+## ✨ Why this collection
 
-### 方式一：克隆整库（推荐）
+| | This repo | Naïve "prompt dumps" |
+|---|-----------|----------------------|
+| **Structure** | Spec-compliant folders (`SKILL.md` + `scripts/` + `references/`) | Loose `.md` files |
+| **Loading model** | Progressive disclosure (metadata → body → resources) | Everything dumped into context |
+| **Provenance** | Every skill built via a benchmarked 4-step loop | Ad-hoc |
+| **Benchmarked against** | Official Anthropic whitepaper + `agentskills.io` + mature skills (`dbs-content`, `yao-demand-skill`) | — |
+| **License** | MIT, explicit `license`/`allowed-tools` frontmatter | Unspecified |
+| **Tested** | Scripts runnable; JSON-validated outputs | Untested |
+
+In short: these are **workflow + experience-distillation** skills (the Anthropic / OpenAI sense), not code generators.
+
+---
+
+## 📑 Table of Contents
+
+- [What are Agent Skills?](#-what-are-agent-skills)
+- [Why this collection](#-why-this-collection)
+- [Skill catalog](#-skill-catalog)
+- [Compatibility matrix](#-compatibility-matrix)
+- [Installation](#-installation)
+- [Repository structure](#-repository-structure)
+- [Anatomy of a skill](#-anatomy-of-a-skill)
+- [Design methodology](#-design-methodology)
+- [Standards compliance](#-standards-compliance)
+- [Contributing](#-contributing)
+- [Roadmap](#-roadmap)
+- [License & third-party notice](#-license--third-party-notice)
+- [Acknowledgments](#-acknowledgments)
+
+---
+
+## 🗂️ Skill catalog
+
+| # | Skill | Category | One-line | Trigger |
+|---|-------|----------|----------|---------|
+| 1 | `long-screenshot-ocr` | Vision / OCR | High-quality text extraction from ultra-long screenshots | 「OCR 这张截图」「把长图转成文字」 |
+| 2 | `miniprogram-builder` | WeChat / No-code | Zero-to-one WeChat mini-program workflow + experience cards | `/miniprogram-builder`、「帮我做个小程序」 |
+| 3 | `skill-building-playbook` | Meta-skill | How to build/review Agent Skills, benchmarked | `/skill-building-playbook`、「帮我做个 skill」 |
+| 4 | `gzh-cover-maker` | WeChat / Design | Hook-driven WeChat cover images (square + wide) | 「公众号封面」「文章封面」 |
+| 5 | `gzh-infographic-maker` | WeChat / Design | Premium two-column comparison infographics | 「公众号对比图」「双栏对比图」 |
+| 6 | `repo-topic-pipeline` | Content / Research | Repo → topic library → ranked topic decision table | 「把仓库变成选题库」「选题打分」 |
+
+### 1. 🔍 `long-screenshot-ocr` — Ultra-long screenshot OCR
+
+- **What it does**: Splits a tall screenshot into overlapping slices, upscales each, runs RapidOCR (PP-OCR), rebuilds reading order, and cleans noise (page numbers, console timestamps, edge artifacts). Solves whole-image OCR's missing titles, scrambled order, and digit noise.
+- **Dependencies**: `pip install rapidocr-onnxruntime pillow numpy`
+- **Usage**:
+  ```bash
+  python skills/long-screenshot-ocr/scripts/ocr_long_screenshot.py <image.png> <output.md>
+  ```
+- **Inside**: `SKILL.md`, `scripts/ocr_long_screenshot.py`
+
+### 2. 💬 `miniprogram-builder` — WeChat mini-program, zero to one
+
+- **What it does**: A workflow + experience-decision cards. Turns a vague idea into a shippable WeChat mini-program: topic decision (5 cards A–E) → filing/entity/category selection → optional skeleton generation → launch runbook. Bundles a distilled "AI Mini-Program Field Manual" + WeChat service-category table.
+- **Dependencies**: optional `scripts/generate_miniprogram.py` needs Python 3 (generates valid skeletons: calculator / score / quiz / generator / custom).
+- **Usage**: invoke the skill in chat, advance through Phases 0–7; run the generator when a skeleton is needed.
+- **Inside**: `SKILL.md`, `references/manual_synthesis.md`, `references/wechat_service_categories.md`, `scripts/generate_miniprogram.py`, `_demo/` (generated samples)
+
+### 3. 📐 `skill-building-playbook` — Meta-skill for authoring skills
+
+- **What it does**: Codifies *how to build a good skill* into a reusable loop — `skill-creator` scaffold → scrape/search distillation → benchmark local mature skills (`dbs-content`, `yao-demand-skill`) → validate against the official Anthropic spec. The methodology this whole repo is built on.
+- **Dependencies**: none (pure methodology + references).
+- **Usage**: invoke in chat; deep spec in `references/agent-skills-official-spec.md`.
+- **Inside**: `SKILL.md`, `references/agent-skills-official-spec.md`
+
+### 4. 🖼️ `gzh-cover-maker` — WeChat cover image generator
+
+- **What it does**: Turns an article hook into two ready-to-use PNGs — **1080×1080 square** (feed thumbnail) + **1080×460 wide** (article top / share card). Premium dark + gold palette, large numeric/keyword anchor, 5-element task chips.
+- **Dependencies**: `pip install pillow` + a Chinese system font (Microsoft YaHei / Source Han Sans).
+- **Usage**: invoke the skill in chat; scripts in `scripts/`.
+- **Inside**: `SKILL.md`, `scripts/gzh_cover.py`, `scripts/gzh_cover_膝盖篇.py`
+
+### 5. 📊 `gzh-infographic-maker` — WeChat comparison infographic
+
+- **What it does**: Generates 1080px-wide two-column comparison infographics. Restrained, premium look: near-black ink + warm gold + muted red (for the "before" side), rounded cards, bottom summary bar. Avoids font-glyph check/cross markers.
+- **Dependencies**: `pip install pillow` + Chinese font.
+- **Usage**: invoke the skill in chat; script in `scripts/gzh_infographic.py`.
+- **Inside**: `SKILL.md`, `scripts/gzh_infographic.py`
+
+### 6. 🧠 `repo-topic-pipeline` — Repo → topic library → decision table
+
+- **What it does**: Converts any GitHub repo (or local docs/code folder) into a structured, searchable material library, then runs a 4-stage pipeline → ranked topic decision table: ① Collect ② Mine (multi-angle) ③ Score (5 dimensions, local tool) ④ Classify (Markdown + CSV).
+- **Dependencies**: Python 3 (transparent local scoring tool).
+- **Usage**: invoke the skill in chat; scripts `extract_materials.py`, `score_topics.py`.
+- **Inside**: `SKILL.md`, `scripts/extract_materials.py`, `scripts/score_topics.py`
+
+---
+
+## 🔌 Compatibility matrix
+
+These skills follow the `agentskills.io` open standard, so they load in any compliant runtime. Copy a skill folder into the corresponding global path:
+
+| Runtime | Global skill path |
+|---------|-------------------|
+| **WorkBuddy** | `~/.workbuddy/skills/<skill-name>` |
+| Claude Code | `~/.claude/skills/<skill-name>` |
+| Codex | `~/.codex/skills/<skill-name>` |
+| Cursor | `~/.cursor/skills/<skill-name>` |
+| Gemini CLI | `~/.gemini/skills/<skill-name>` |
+| GitHub Copilot | `~/.copilot/skills/<skill-name>` |
+| OpenCode | `~/.config/opencode/skills/<skill-name>` |
+
+> Project-scoped install: copy into `<your-project>/.workbuddy/skills/<skill-name>` (WorkBuddy) or the equivalent `.skills/` dir for other runtimes.
+
+---
+
+## ⚡ Installation
+
+### Option A — Clone the whole repo (recommended)
 
 ```bash
 git clone https://github.com/lyanshi795-commits/workbuddy-skills.git
 ```
 
-克隆后，把 `skills/` 下需要的技能文件夹整体复制到 WorkBuddy 技能目录：
+Then copy the skills you need:
 
 ```bash
-# 用户级（所有项目通用）
-cp -r workbuddy-skills/skills/<技能名> ~/.workbuddy/skills/<技能名>
+# user-wide (all projects)
+cp -r workbuddy-skills/skills/<skill-name> ~/.workbuddy/skills/<skill-name>
 
-# 或项目级（仅当前项目）
-cp -r workbuddy-skills/skills/<技能名> <你的项目>/.workbuddy/skills/<技能名>
+# or project-scoped
+cp -r workbuddy-skills/skills/<skill-name> <your-project>/.workbuddy/skills/<skill-name>
 ```
 
-### 方式二：手动复制
+### Option B — Download a single skill
 
-直接下载本仓库，按方式一复制你需要的技能文件夹即可。
+From the GitHub file browser, open `skills/<skill-name>/`, download the folder, and drop it into your skill directory. No build step, no network calls at runtime.
 
-> ✅ 安装后，在 WorkBuddy 对话中直接用触发词或 `/技能名` 调用（见下方各技能说明）。
+> After install, call a skill in chat with its trigger phrase or `/<skill-name>`. Rescan/restart the agent if it doesn't appear immediately.
 
 ---
 
-## 📂 目录结构
+## 📂 Repository structure
 
 ```
 workbuddy-skills/
@@ -76,91 +179,161 @@ workbuddy-skills/
 ├── LICENSE
 ├── .gitignore
 └── skills/
-    ├── long-screenshot-ocr/      # 🔍 超长截图 OCR
-    ├── miniprogram-builder/      # 💬 微信小工具从零到一
-    ├── skill-building-playbook/  # 📐 搭建 Skill 的方法论（meta-skill）
-    ├── gzh-cover-maker/          # 🖼️ 公众号封面图生成
-    ├── gzh-infographic-maker/    # 📊 公众号对比图生成
-    └── repo-topic-pipeline/      # 🧠 仓库 → 选题库 → 选题决策表
+    ├── long-screenshot-ocr/        # 🔍 ultra-long screenshot OCR
+    │   ├── SKILL.md
+    │   └── scripts/ocr_long_screenshot.py
+    ├── miniprogram-builder/        # 💬 WeChat mini-program zero→one
+    │   ├── SKILL.md
+    │   ├── references/{manual_synthesis,wechat_service_categories}.md
+    │   ├── scripts/generate_miniprogram.py
+    │   └── _demo/                   # generated skeletons
+    ├── skill-building-playbook/     # 📐 meta-skill: how to build skills
+    │   ├── SKILL.md
+    │   └── references/agent-skills-official-spec.md
+    ├── gzh-cover-maker/             # 🖼️ WeChat cover images
+    │   ├── SKILL.md
+    │   └── scripts/{gzh_cover,gzh_cover_膝盖篇}.py
+    ├── gzh-infographic-maker/       # 📊 comparison infographics
+    │   ├── SKILL.md
+    │   └── scripts/gzh_infographic.py
+    └── repo-topic-pipeline/         # 🧠 repo → topic decision table
+        ├── SKILL.md
+        └── scripts/{extract_materials,score_topics}.py
 ```
 
 ---
 
-## 🗂️ 技能清单
+## 🧬 Anatomy of a skill
 
-| # | 技能 | 一句话简介 | 触发方式 |
-|---|------|-----------|---------|
-| 1 | `long-screenshot-ocr` | 超长截图高质量文字提取 | 「OCR 这张截图」「把长图转成文字」 |
-| 2 | `miniprogram-builder` | 微信小程序从零到一工作流 | `/miniprogram-builder`、「帮我做个小程序」 |
-| 3 | `skill-building-playbook` | 搭建 Skill 的方法论元技能 | `/skill-building-playbook`、「帮我做个 skill」 |
-| 4 | `gzh-cover-maker` | 公众号封面图生成 | 「公众号封面」「文章封面」 |
-| 5 | `gzh-infographic-maker` | 公众号双栏对比图生成 | 「公众号对比图」「双栏对比图」 |
-| 6 | `repo-topic-pipeline` | 仓库转选题库与打分 | 「把仓库变成选题库」「从 GitHub 挖选题」 |
+Every skill here is a folder + `SKILL.md`. The minimal valid form (from the official spec) needs only `name` and `description`:
 
-### 1. 🔍 `long-screenshot-ocr` — 超长截图文字提取
+```yaml
+---
+name: my-skill-name
+description: What the skill does and when to use it.
+---
 
-- **功能**：对手机长截图（教程页、聊天记录、课程手册）做高质量 OCR。采用「切片 + 2× 放大 + RapidOCR + 阅读顺序重建 + 噪声清洗」流水线，解决整图 OCR 漏标题、乱序、数字噪声的问题。
-- **依赖**：`pip install rapidocr-onnxruntime pillow numpy`
-- **用法**：
-  ```bash
-  python skills/long-screenshot-ocr/scripts/ocr_long_screenshot.py <图片路径> <输出md路径>
-  ```
-- **文件**：`SKILL.md`、`scripts/ocr_long_screenshot.py`
+# My Skill
 
-### 2. 💬 `miniprogram-builder` — 微信小工具从零到一
+Instructions the agent follows when this skill is active.
+```
 
-- **功能**：工作流 + 经验决策卡。把模糊想法做成可上线的微信小程序：选题决策（5 张经验卡 A–E）→ 备案/主体/类目选型 → 骨架生成（可选）→ 上线 runbook。附微信服务类目表与小程序实战手册蒸馏。
-- **依赖**：可选脚手架 `scripts/generate_miniprogram.py` 需 Python 3（生成合法小程序骨架：计算器/评分/测试/生成器/自定义 5 类）。
-- **用法**：对话中调用技能，按 Phase 0–7 推进；需要骨架时运行生成脚本。
-- **文件**：`SKILL.md`、`references/manual_synthesis.md`、`references/wechat_service_categories.md`、`scripts/generate_miniprogram.py`、`_demo/`（生成样例）
+A production skill in this repo adds discipline — real example from `long-screenshot-ocr`:
 
-### 3. 📐 `skill-building-playbook` — 搭建 Skill 的方法论（meta-skill）
+```yaml
+---
+name: long-screenshot-ocr
+description: Extract Chinese/English text from very long screenshot images
+  (e.g., mobile scroll captures, course handbooks, chat logs) using slicing,
+  upscaling, reading-order reconstruction and noise cleanup. Use this skill when
+  the user asks to OCR or extract text from one or more PNG/JPG screenshots.
+agent_created: true
+---
+```
 
-- **功能**：元技能。把「如何搭好一个 Skill」固化为可复用工作流：skill-creator 打骨架 → 爬取/搜索沉淀 → 对标本地成熟 Skill（dbs-content / yao-demand-skill）→ 对标 Anthropic 官方规范做研究级校验。
-- **依赖**：无（纯方法论 + 参考资料）。
-- **用法**：对话中调用，按四步循环执行；深度规范见 `references/agent-skills-official-spec.md`。
-- **文件**：`SKILL.md`、`references/agent-skills-official-spec.md`
-
-### 4. 🖼️ `gzh-cover-maker` — 公众号封面图生成
-
-- **功能**：从文章 hook 生成两张可直接用的 PNG：方形 1080×1080（信息流缩略图）+ 宽幅 1080×460（文章首图/分享卡）。暗金高级质感，含大数字/关键词视觉锚点与 5 要素任务 chip。
-- **依赖**：`pip install pillow` + 系统中文字体（微软雅黑 / 思源黑体）。
-- **用法**：对话中调用技能，按提示生成；脚本在 `scripts/`。
-- **文件**：`SKILL.md`、`scripts/gzh_cover.py`、`scripts/gzh_cover_膝盖篇.py`
-
-### 5. 📊 `gzh-infographic-maker` — 公众号对比图生成
-
-- **功能**：生成 1080px 宽双栏对比信息图（公众号配图）。低饱和、高级感：近黑墨色 + 暖金点缀 + 克制红，圆角卡片 + 底部总结条，不依赖字体字形画勾叉。
-- **依赖**：`pip install pillow` + 中文字体。
-- **用法**：对话中调用技能；脚本在 `scripts/gzh_infographic.py`。
-- **文件**：`SKILL.md`、`scripts/gzh_infographic.py`
-
-### 6. 🧠 `repo-topic-pipeline` — 仓库转选题库
-
-- **功能**：把任意 GitHub 仓库（或本地文档/代码目录）变成结构化、可检索的素材库，再跑四阶段流水线产出「排序后的选题决策表」：① 素材采集 ② 选题挖掘（多视角）③ 五维打分 ④ 分类输出（Markdown + CSV）。
-- **依赖**：Python 3（本地打分工具，透明权重）；详见 `scripts/`。
-- **用法**：对话中调用技能；脚本 `extract_materials.py`、`score_topics.py`。
-- **文件**：`SKILL.md`、`scripts/extract_materials.py`、`scripts/score_topics.py`
+**Frontmatter rules we enforce** (per `agentskills.io` + Anthropic whitepaper):
+- `name` — kebab-case, ≤ 64 chars, matches the folder name, no reserved prefixes (`claude`, `anthropic`).
+- `description` — must answer **what** + **when** + trigger words, ≤ 1024 chars.
+- `license` / `allowed-tools` / `metadata` — declared where relevant (see [compliance](#-standards-compliance)).
+- **Body** kept under ~500 lines; long material sinks into `references/`.
 
 ---
 
-## 🛠️ 设计方法论
+## 🛠️ Design methodology
 
-搭新技能的标准四步，不跳步：
+Every skill in this repo was built through a benchmarked 4-step loop (no step skipped):
 
-1. **🦴 skill-creator 打骨架** —— 先 scaffold，保证 frontmatter / 目录格式正确。
-2. **📥 爬取 / 搜索 / 沉淀** —— 把领域经验灌进 `references/`，正文只留核心（三级渐进式披露）。
-3. **🎯 对标本地成熟 Skill（必须先做）** —— 学 `dbs-content`（哲学 → Phase → 反面案例 → 说话风格）、`yao-demand-skill`（路由边界 → 输出契约 → Reference Map）。缺哪样补哪样。
-4. **✅ 对标官方规范做研究级校验** —— 逐条核对 agentskills.io 规范 + Anthropic 白皮书。
+```mermaid
+flowchart TD
+    S[1 · skill-creator scaffold<br/>correct frontmatter + folder format] --> R[2 · Scrape / search / distill<br/>domain knowledge → references/]
+    R --> L[3 · Benchmark local mature skills<br/>dbs-content · yao-demand-skill]
+    L --> O[4 · Validate vs official spec<br/>agentskills.io + Anthropic whitepaper]
+    O -->|iterate| S
+```
 
-> **官方硬约束速记**：`name` 用 kebab-case ≤ 64 字符、与目录同名；`description` 必含【做什么】+【何时用】+ 触发词、≤ 1024 字符；正文 < 500 行；文件夹内不放 README；三级披露（元数据常驻 / 正文触发 / references 按需零 token）。安全上，社区约 26.1% 的技能含漏洞、带脚本的是纯指令的 2.12 倍——只信来源、审计捆绑文件。
+**Hard constraints we hold** (from the official sources):
+- Progressive disclosure: metadata always resident · body on activation · `references/`/`scripts/` zero-token until needed.
+- `SKILL.md` body < 500 lines.
+- No `README.md` inside a skill folder (the spec reserves that name).
+- **Security**: community skills have a ~26.1% vulnerability rate, and scripted skills are 2.12× riskier than instruction-only — so we audit every bundled file and only trust first-party sources.
 
 ---
 
-## 📄 许可证 & 贡献
+## ✅ Standards compliance
 
-本项目以 **MIT 许可证** 开源，见 [LICENSE](./LICENSE)。
+| Skill | `license` | `allowed-tools` | `metadata.version` | `references/` | `scripts/` |
+|-------|:---:|:---:|:---:|:---:|:---:|
+| `long-screenshot-ocr` | — | — | — | — | ✅ |
+| `miniprogram-builder` | MIT | ✅ | 1.0.0 | 2 | ✅ |
+| `skill-building-playbook` | MIT | ✅ | 1.0.0 | 1 | — |
+| `gzh-cover-maker` | — | — | — | — | ✅ |
+| `gzh-infographic-maker` | — | — | — | — | ✅ |
+| `repo-topic-pipeline` | — | — | — | — | ✅ |
 
-> ⚠️ 本仓库仅包含**本人创建**的技能（`agent_created: true`）。第三方技能（dbs-*、yao-*、市场安装的 skill_* 等）不在此仓库内，版权归各自作者。
+> The **whole repo is MIT** (see [LICENSE](./LICENSE)); the per-skill `license` field is additionally declared on skills where it was set at authoring time. All skills are first-party (`agent_created: true`).
 
-🤝 欢迎提 Issue / PR。新增或修改技能请遵循上方「设计方法论」四步，并保证 `SKILL.md` 符合官方规范（正文 < 500 行、frontmatter 完整）。
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. To keep the bar consistent with the methodology above:
+
+1. **Fork** the repo and create a branch (`git checkout -b feature/my-skill`).
+2. **Build** the skill via the [4-step loop](#-design-methodology): scaffold → distill → benchmark → validate.
+3. **Verify** `SKILL.md` body < 500 lines, frontmatter complete, and any script runs cleanly.
+4. **Commit** (`git commit -m "feat: add <skill-name>"`) and **push**.
+5. Open a **Pull Request** describing the skill's trigger, inputs, and outputs.
+
+Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for the full checklist (or see the template below). New skills should follow the [Anatomy](#-anatomy-of-a-skill) section.
+
+<details>
+<summary>Minimal CONTRIBUTING.md template</summary>
+
+```markdown
+# Contributing
+
+1. Fork → branch `feature/<name>`
+2. Create `skills/<name>/SKILL.md` (kebab-case, matches folder)
+3. Frontmatter: name + description(what+when+triggers) required;
+   license / allowed-tools / metadata recommended
+4. Body < 500 lines; long material → references/
+5. Test any bundled script; audit for secrets
+6. PR with trigger / inputs / outputs documented
+```
+
+</details>
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Run `skills-ref validate` against every skill and publish a compliance badge.
+- [ ] Add per-skill example outputs (sample OCR result, sample cover PNG) as visual proof.
+- [ ] English docs for `miniprogram-builder` and `repo-topic-pipeline`.
+- [ ] A GitHub Action that lints every `SKILL.md` on PR (frontmatter + line count).
+- [ ] More meta-skills (e.g., a skill for *evaluating* other skills).
+
+---
+
+## 📄 License & third-party notice
+
+This project is released under the **MIT License** — see [LICENSE](./LICENSE).
+
+> ⚠️ **Scope**: this repository contains **only first-party skills** (`agent_created: true`). Third-party skills installed locally (`dbs-*`, `yao-*`, marketplace `skill_*`) are **not** included — their copyright belongs to their respective authors.
+
+---
+
+## 🙏 Acknowledgments
+
+- The [Agent Skills specification](https://agentskills.io) and Anthropic's *The Complete Guide to Building Skills for Claude* — the format and constraints this repo follows.
+- [awesome-claude-skills](https://github.com/ThojoUno/awesome-claude-skills) — for the compatibility-matrix and catalog conventions adopted here.
+- `dbs-content` and `yao-demand-skill` — the local mature skills used as structural benchmarks (philosophy → phases → anti-patterns → output contract → reference map).
+- arXiv 2602.12430 (survey) and 2602.20867 (SoK) — empirical backing for the progressive-disclosure and security guidance.
+
+---
+
+<div align="center">
+
+**⭐ If this collection saves you time, consider starring the repo.**
+
+</div>
